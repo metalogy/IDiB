@@ -97,6 +97,7 @@ export class AppComponent implements OnInit {
       let temperature = -0.0014 * m * (34 - ta);
       let respiration = temperature + vapour;
 
+      //izolacja ubrania thermal clothing level
       let tcl = (32 + 0.303 * Math.exp(-0.036 * m) - 0.028) + (3.05 * Math.pow(10, -3)) * va + (0.42 * (tr - 32))
 
       let radiation = -3.96 * 1e-8 * fcl * (Math.pow(tcl + 273, 4) - Math.pow(tr + 273, 4));
@@ -115,18 +116,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  calculateTCL(ta: number, tr: number, va: number, icl: number): number {
-    return 35.7 + 0.0285 * icl + (3.05 * Math.pow(10, -3)) * va + (0.42 * (tr - ta));
-  }
-
-  TCL(ta: number, tr: number, vel: number, rh: number, met: number, clo: number): number {
-    let tcl = 0;
-    tcl = (0.31 * clo) + (0.72 * (ta + tr) / 2) + (0.0014 * met * (34 - ta)) - (0.024 * vel) - 0.38;
-    tcl = tcl - (0.15 * rh * (tcl - (ta + tr) / 2));
-    return tcl;
-  }
-
-  esat(t: number): number {
+  esat(t: number): number { //ciśnienie pary nasyconej
     let a, b;
     if (t < 0) {
       a = 21.874;
