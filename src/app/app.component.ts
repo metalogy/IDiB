@@ -141,13 +141,11 @@ export class AppComponent implements OnInit {
   }
 
   cloChanged(value: any) {
-    debugger;
     this.selectCLO = true;
     this.icl = value;
   }
 
   metChanged(value: any) {
-    debugger;
     this.selectMET = true;
     this.m = value;
   }
